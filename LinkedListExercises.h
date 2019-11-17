@@ -80,6 +80,16 @@
 
 template <typename T>
 void LinkedList<T>::insertOrdered(const T& newData) {
+
+  Node *newNode = new Node(newData);
+
+  // Empty list corner case
+  if(!head_) {
+    head_ = newNode;
+    tail_ = newNode;
+  }// endif
+
+  ++size_;
 }
 
 /********************************************************************

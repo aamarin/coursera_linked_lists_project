@@ -469,7 +469,7 @@ TEST_CASE("Testing insertOrdered: Insert at end", "[weight=1]") {
     REQUIRE(studentAddress == expectedAddress);
   }
 }
-
+*/
 TEST_CASE("Testing insertOrdered: Insert to empty list", "[weight=1]") {
   LinkedList<int> l;
   auto expectedList = l;
@@ -486,7 +486,7 @@ TEST_CASE("Testing insertOrdered: Insert to empty list", "[weight=1]") {
     REQUIRE(studentResultList.assertCorrectSize());
   }
 }
-
+/*
 TEST_CASE("Testing insertOrdered: Insert in middle", "[weight=1]") {
   LinkedList<int> l;
   l.pushBack(1);
