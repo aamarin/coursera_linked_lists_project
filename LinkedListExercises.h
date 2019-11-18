@@ -87,43 +87,44 @@ void LinkedList<T>::insertOrdered(const T& newData) {
   if(!head_) {
     head_ = newNode;
     tail_ = newNode;
-  }// endif
-  else {
-    auto curr = head_;
-    bool break_from_loop = false;
+     ++size_;
+     return;
+  }
 
-    while(curr && !break_from_loop) {
+  auto curr = head_;
+  bool break_from_loop = false;
 
-      if( newData < curr->data ) {
-        auto prevNode = curr->prev;
+  while(curr && !break_from_loop) {
 
-        if(!curr->prev) {
-          newNode->next = head_;
-          head_->prev = newNode;
-          head_ = newNode;
-          break_from_loop = true;
-        }
-        else {
-          prevNode->next = newNode;
-          newNode->prev = prevNode;
-          newNode->next = curr;
-          curr->prev = newNode;
-          break_from_loop = true;
-        }
-      }// end if newData < curr->data 
+    if( newData < curr->data ) {
+      auto prevNode = curr->prev;
+
+      if(!curr->prev) {
+        newNode->next = head_;
+        head_->prev = newNode;
+        head_ = newNode;
+        break_from_loop = true;
+      }
       else {
-        if (!curr->next && curr->prev) {
-          curr->next = newNode;
-          newNode->prev = curr;
-          tail_ = newNode;
-          break_from_loop = true;
-        }
-        else {
-          curr = curr->next;
-        }
-      } // else newData > curr->data 
-    }// while
-  }// end else
+        prevNode->next = newNode;
+        newNode->prev = prevNode;
+        newNode->next = curr;
+        curr->prev = newNode;
+        break_from_loop = true;
+      }
+    }// end if newData < curr->data 
+    else {
+      if (!curr->next && curr->prev) {
+        curr->next = newNode;
+        newNode->prev = curr;
+        tail_ = newNode;
+        break_from_loop = true;
+      }
+      else {
+        curr = curr->next;
+      }
+    } // else newData > curr->data 
+  }// while
 
   ++size_;
 }
