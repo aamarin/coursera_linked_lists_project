@@ -405,7 +405,7 @@ TEST_CASE("Benchmark: Measuring slowdown for sorting algorithms", "[weight=0][.]
 // ========================================================================
 // Tests: insertOrdered
 // ========================================================================
-/*
+
 TEST_CASE("Testing insertOrdered: Insert at front", "[weight=1]") {
   LinkedList<int> l;
   l.pushBack(1);
@@ -437,7 +437,7 @@ TEST_CASE("Testing insertOrdered: Insert at front", "[weight=1]") {
     REQUIRE(studentAddress == expectedAddress);
   }
 }
-
+/*
 TEST_CASE("Testing insertOrdered: Insert at end", "[weight=1]") {
   LinkedList<int> l;
   l.pushBack(1);

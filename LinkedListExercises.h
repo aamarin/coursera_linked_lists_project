@@ -90,17 +90,29 @@ void LinkedList<T>::insertOrdered(const T& newData) {
   }// endif
   else {
     auto curr = head_;
-    while(curr) {
+    bool break_from_loop = false;
+
+    while(curr && !break_from_loop) {
+
       if( !(newData > curr->data) ) {
         auto prevNode = curr->prev;
-        prevNode->next = newNode;
-        newNode->prev = prevNode;
-        newNode->next = curr;
-        curr->prev = newNode;
-        break;
-      }
+
+        if(!curr->prev) {
+          newNode->next = head_;
+          head_->prev = newNode;
+          head_ = newNode;
+          break_from_loop = true;
+        }
+        else {
+          prevNode->next = newNode;
+          newNode->prev = prevNode;
+          newNode->next = curr;
+          curr->prev = newNode;
+          break_from_loop = true;
+        }
+      }// end if
       curr = curr->next;
-    }
+    }// while
   }// end else
 
   ++size_;
