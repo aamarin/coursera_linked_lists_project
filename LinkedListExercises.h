@@ -81,13 +81,27 @@
 template <typename T>
 void LinkedList<T>::insertOrdered(const T& newData) {
 
-  Node *newNode = new Node(newData);
+  auto newNode = new Node(newData);
 
   // Empty list corner case
   if(!head_) {
     head_ = newNode;
     tail_ = newNode;
   }// endif
+  else {
+    auto curr = head_;
+    while(curr) {
+      if( !(newData > curr->data) ) {
+        auto prevNode = curr->prev;
+        prevNode->next = newNode;
+        newNode->prev = prevNode;
+        newNode->next = curr;
+        curr->prev = newNode;
+        break;
+      }
+      curr = curr->next;
+    }
+  }// end else
 
   ++size_;
 }

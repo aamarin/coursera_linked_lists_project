@@ -486,7 +486,7 @@ TEST_CASE("Testing insertOrdered: Insert to empty list", "[weight=1]") {
     REQUIRE(studentResultList.assertCorrectSize());
   }
 }
-/*
+
 TEST_CASE("Testing insertOrdered: Insert in middle", "[weight=1]") {
   LinkedList<int> l;
   l.pushBack(1);
@@ -524,7 +524,6 @@ TEST_CASE("Testing insertOrdered: Insert in middle", "[weight=1]") {
     REQUIRE(studentAddress == expectedAddress);
   }
 }
-*/
 
 // ========================================================================
 // Tests: merge
