@@ -94,7 +94,7 @@ void LinkedList<T>::insertOrdered(const T& newData) {
 
     while(curr && !break_from_loop) {
 
-      if( !(newData > curr->data) ) {
+      if( newData < curr->data ) {
         auto prevNode = curr->prev;
 
         if(!curr->prev) {
@@ -110,8 +110,18 @@ void LinkedList<T>::insertOrdered(const T& newData) {
           curr->prev = newNode;
           break_from_loop = true;
         }
-      }// end if
-      curr = curr->next;
+      }// end if newData < curr->data 
+      else {
+        if (!curr->next && curr->prev) {
+          curr->next = newNode;
+          newNode->prev = curr;
+          tail_ = newNode;
+          break_from_loop = true;
+        }
+        else {
+          curr = curr->next;
+        }
+      } // else newData > curr->data 
     }// while
   }// end else
 

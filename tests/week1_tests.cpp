@@ -437,7 +437,7 @@ TEST_CASE("Testing insertOrdered: Insert at front", "[weight=1]") {
     REQUIRE(studentAddress == expectedAddress);
   }
 }
-/*
+
 TEST_CASE("Testing insertOrdered: Insert at end", "[weight=1]") {
   LinkedList<int> l;
   l.pushBack(1);
@@ -452,24 +452,32 @@ TEST_CASE("Testing insertOrdered: Insert at end", "[weight=1]") {
   auto* expectedAddress = studentResultList.getHeadPtr();
   studentResultList.insertOrdered(100);
 
+  std::cout << "Before ==" << std:: endl;
   SECTION("Checking that values are correct") {
     REQUIRE(studentResultList == expectedList);
   }
+
+  std::cout << "assertPrevLinks" << std:: endl;
 
   SECTION("Checking that the list prev links and tail pointer are being set correctly") {
     REQUIRE(studentResultList.assertPrevLinks());
   }
 
+  std::cout << "assertCorrectSize" << std:: endl;
+
   SECTION("Checking that the list size is being tracked correctly") {
     REQUIRE(studentResultList.assertCorrectSize());
   }
+
+  std::cout << "getHeadPtr" << std:: endl;
 
   SECTION("Checking that the existing node addresses didn't change") {
     auto* studentAddress = studentResultList.getHeadPtr();
     REQUIRE(studentAddress == expectedAddress);
   }
+  std::cout << "Insert at tail test end" << std:: endl;
 }
-*/
+
 TEST_CASE("Testing insertOrdered: Insert to empty list", "[weight=1]") {
   LinkedList<int> l;
   auto expectedList = l;
