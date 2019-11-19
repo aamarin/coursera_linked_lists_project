@@ -35,7 +35,7 @@ T& deref(T* ptr) {
 // ========================================================================
 // Benchmarks
 // ========================================================================
-/*
+
 // This is hidden because of the [.] tag.
 // You can run it explicitly with: ./test [bench]
 TEST_CASE("Benchmark: Measuring slowdown for insertOrdered and merge", "[weight=0][.][bench]") {
@@ -105,7 +105,7 @@ TEST_CASE("Benchmark: Measuring slowdown for insertOrdered and merge", "[weight=
       std::cout << "The worst case should be O(n) for insertOrdered,\n so the larger case might take nearly 10x longer here." << std::endl;
     }
   }
-
+/*
   SECTION("Timing merge") {
 
     constexpr int NUM_TEST_RUNS = 5;
@@ -180,13 +180,13 @@ TEST_CASE("Benchmark: Measuring slowdown for insertOrdered and merge", "[weight=
       std::cout << "The worst case should be O(n) for merge,\n so the larger case might take nearly 10x longer here." << std::endl;
     }
   }
-
+*/
 }
 
 // This is hidden because of the [.] tag.
 // You can run it explicitly with: ./test [bench]
 TEST_CASE("Benchmark: Measuring slowdown for sorting algorithms", "[weight=0][.][bench]") {
-
+/*
   SECTION("Timing insertionSort") {
 
     constexpr int NUM_TEST_RUNS = 3;
@@ -399,9 +399,9 @@ TEST_CASE("Benchmark: Measuring slowdown for sorting algorithms", "[weight=0][.]
       << std::endl << " large enough to show the asymptotic complexity. (Compare the ratio of running times"
       << std::endl << " for a single algorithm before and after the increase in input size.)" << std::endl;
   }
-
-}
 */
+}
+
 // ========================================================================
 // Tests: insertOrdered
 // ========================================================================
