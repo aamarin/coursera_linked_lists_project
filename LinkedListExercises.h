@@ -32,6 +32,7 @@
 // as being in your own source code files, where it arises later.
 #include <iostream>
 #include <string>
+#include  <algorithm>
 
 #include "LinkedList.h"
 
@@ -221,6 +222,10 @@ LinkedList<T> LinkedList<T>::merge(const LinkedList<T>& other) const {
   // the final result we want. This is what we will return at the end of
   // the function.
   LinkedList<T> merged;
+  
+  //std::cout << "Input: " << std::endl;
+  //std::cout << "left list is: " << left << std::endl;
+  //std::cout << "right list is: " << right << std::endl;
 
   // -----------------------------------------------------------
   // TODO: Your code here!
@@ -243,68 +248,69 @@ LinkedList<T> LinkedList<T>::merge(const LinkedList<T>& other) const {
   // 4. Remember, DO NOT try to use insertOrdered here. That would be
   //    very slow.
 
+  // Keep merging items until both LLs have been iterated through
   while( !left.empty() || !right.empty() ){
+    // Corner case for one list empty while the other non-empty
     if( !left.empty() && right.empty()) {
       while( !left.empty() ) {
         if( merged.empty() ) {
           merged.pushBack(left.front());
-          left.popFront();
-          continue;
-        }
-
-        const auto last_merged_item = merged.back();
-        const auto item_to_merge = left.front();
-
-        if(last_merged_item < item_to_merge) {
-          merged.pushBack(item_to_merge);
         }
         else {
-          merged.popBack();
-          merged.pushBack(item_to_merge);
-          merged.pushBack(last_merged_item);
+          const auto last_merged_item = merged.back();
+          const auto item_to_merge = left.front();
+
+          if(last_merged_item <= item_to_merge) {
+            merged.pushBack(item_to_merge);
+          }
+          else {
+            merged.popBack();
+            merged.pushBack(item_to_merge);
+            merged.pushBack(last_merged_item);
+          }
         }
 
         left.popFront();
       }// inner while
     }// end if
+
+    // Corner case for one list empty while the other non-empty (reversed)
     else if( left.empty() && !right.empty() ) {
       while( !right.empty() ) {
         if( merged.empty() ) {
           merged.pushBack(right.front());
-          right.popFront();
-          continue;
-        }
-        const auto last_merged_item = merged.back();
-        const auto item_to_merge = right.front();
-
-        if(last_merged_item < item_to_merge) {
-          merged.pushBack(item_to_merge);
         }
         else {
-          merged.popBack();
-          merged.pushBack(item_to_merge);
-          merged.pushBack(last_merged_item);
+          const auto last_merged_item = merged.back();
+          const auto item_to_merge = right.front();
+
+          if(last_merged_item <= item_to_merge) {
+            merged.pushBack(item_to_merge);
+          }
+          else {
+            merged.popBack();
+            merged.pushBack(item_to_merge);
+            merged.pushBack(last_merged_item);
+          }
         }
 
         right.popFront();
       }// inner while
     }
+
+    // Both lists are not empty
     else {
-      std::cout << "both not empty" << std::endl;
-      const auto left_node = left.front();
-      const auto right_node = right.front();
-
-      if (left_node < right_node) {
-        merged.pushBack(left_node);
-        merged.pushBack(right_node);
-      }
-      else {
-        merged.pushBack(right_node);
-        merged.pushBack(left_node);      
-      }
-
-      left.popFront();
-      right.popFront();
+      while( !right.empty() && !left.empty() ) {
+        
+        if(left.front() < right.front()) {
+          merged.pushBack(left.front());
+          left.popFront();
+        }
+        else {
+          merged.pushBack(right.front());
+          right.popFront();
+        }
+      }// inner while
 
     }// end else
   }// end while
@@ -317,6 +323,9 @@ LinkedList<T> LinkedList<T>::merge(const LinkedList<T>& other) const {
   // notice that all of our nodes are created on the heap? The part of the
   // list that we pass back is really small; it just contains two pointers
   // and an int.)
+  
+  //std::cout << "Output: " << std::endl;
+  //std::cout << "merged list: " << merged << std::endl;
   return merged;
 }
 

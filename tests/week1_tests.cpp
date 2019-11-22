@@ -105,7 +105,7 @@ TEST_CASE("Benchmark: Measuring slowdown for insertOrdered and merge", "[weight=
       std::cout << "The worst case should be O(n) for insertOrdered,\n so the larger case might take nearly 10x longer here." << std::endl;
     }
   }
-/*
+
   SECTION("Timing merge") {
 
     constexpr int NUM_TEST_RUNS = 5;
@@ -180,13 +180,12 @@ TEST_CASE("Benchmark: Measuring slowdown for insertOrdered and merge", "[weight=
       std::cout << "The worst case should be O(n) for merge,\n so the larger case might take nearly 10x longer here." << std::endl;
     }
   }
-*/
 }
 
 // This is hidden because of the [.] tag.
 // You can run it explicitly with: ./test [bench]
 TEST_CASE("Benchmark: Measuring slowdown for sorting algorithms", "[weight=0][.][bench]") {
-/*
+
   SECTION("Timing insertionSort") {
 
     constexpr int NUM_TEST_RUNS = 3;
@@ -216,7 +215,7 @@ TEST_CASE("Benchmark: Measuring slowdown for sorting algorithms", "[weight=0][.]
     }
 
     std::cout << std::endl;
-
+/*
     {
       auto testSort = unsortedListSmall.insertionSort();
       if (testSort != sortedListSmall) {
@@ -250,6 +249,7 @@ TEST_CASE("Benchmark: Measuring slowdown for sorting algorithms", "[weight=0][.]
       if (sortedList.size()) std::cout << "Time elapsed: " << dur_ms.count() << "ms" << std::endl;
       std::cout << "The worst case is O(n^2) for insertionSort, so the larger sort might take\n nearly 100x longer in this case." << std::endl;
     }
+  */
   }
 
   SECTION("Timing mergeSortRecursive") {
@@ -399,7 +399,7 @@ TEST_CASE("Benchmark: Measuring slowdown for sorting algorithms", "[weight=0][.]
       << std::endl << " large enough to show the asymptotic complexity. (Compare the ratio of running times"
       << std::endl << " for a single algorithm before and after the increase in input size.)" << std::endl;
   }
-*/
+
 }
 
 // ========================================================================
@@ -694,5 +694,3 @@ TEST_CASE("Testing merge: Left and right lists non-empty; right list is longer",
     REQUIRE(studentResultList.assertCorrectSize());
   }
 }
-/*
-*/
