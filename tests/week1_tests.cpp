@@ -38,6 +38,7 @@ T& deref(T* ptr) {
 
 // This is hidden because of the [.] tag.
 // You can run it explicitly with: ./test [bench]
+
 TEST_CASE("Benchmark: Measuring slowdown for insertOrdered and merge", "[weight=0][.][bench]") {
 
   SECTION("Timing insertOrdered") {
@@ -215,14 +216,16 @@ TEST_CASE("Benchmark: Measuring slowdown for sorting algorithms", "[weight=0][.]
     }
 
     std::cout << std::endl;
-/*
+
     {
+      std::cout << unsortedListSmall << std::endl;
       auto testSort = unsortedListSmall.insertionSort();
       if (testSort != sortedListSmall) {
         std::cout << "WARNING: It appears insertionSort or insertOrdered isn't correctly implemented yet.\n"
           << "  The running times below may not be meaningful." << std::endl;
       }
     }
+
     // Reference for chrono library usage:
     // https://en.cppreference.com/w/cpp/chrono/duration/duration_cast
     {
@@ -237,6 +240,7 @@ TEST_CASE("Benchmark: Measuring slowdown for sorting algorithms", "[weight=0][.]
       // Make sure the loop doesn't get optimized away.
       if (sortedList.size()) std::cout << "Time elapsed: " << dur_ms.count() << "ms" << std::endl;
     }
+
     {
       std::cout << "Again, after increasing list size 10x:" << std::endl;
       LinkedList<int> sortedList;
@@ -249,7 +253,7 @@ TEST_CASE("Benchmark: Measuring slowdown for sorting algorithms", "[weight=0][.]
       if (sortedList.size()) std::cout << "Time elapsed: " << dur_ms.count() << "ms" << std::endl;
       std::cout << "The worst case is O(n^2) for insertionSort, so the larger sort might take\n nearly 100x longer in this case." << std::endl;
     }
-  */
+
   }
 
   SECTION("Timing mergeSortRecursive") {

@@ -32,7 +32,6 @@
 // as being in your own source code files, where it arises later.
 #include <iostream>
 #include <string>
-#include  <algorithm>
 
 #include "LinkedList.h"
 
@@ -81,6 +80,7 @@
 
 template <typename T>
 void LinkedList<T>::insertOrdered(const T& newData) {
+//std::cout << "In insertOrdered, data to insert: " << newData<< std::endl;
 
   auto newNode = new Node(newData);
 
@@ -96,7 +96,7 @@ void LinkedList<T>::insertOrdered(const T& newData) {
   bool break_from_loop = false;
 
   while(curr && !break_from_loop) {
-
+    //std::cout << "In while loop (initial): " << curr->data << std::endl;
     if( newData < curr->data ) {
       auto prevNode = curr->prev;
 
@@ -115,7 +115,7 @@ void LinkedList<T>::insertOrdered(const T& newData) {
       }
     }// end if newData < curr->data 
     else {
-      if (!curr->next && curr->prev) {
+      if (!curr->next) {
         curr->next = newNode;
         newNode->prev = curr;
         tail_ = newNode;
@@ -128,6 +128,7 @@ void LinkedList<T>::insertOrdered(const T& newData) {
   }// while
 
   ++size_;
+  //std::cout << "List at end of insertOrdered: " << *this << std::endl;
 }
 
 /********************************************************************
