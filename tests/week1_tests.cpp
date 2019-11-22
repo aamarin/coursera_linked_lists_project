@@ -528,7 +528,7 @@ TEST_CASE("Testing insertOrdered: Insert in middle", "[weight=1]") {
 // ========================================================================
 // Tests: merge
 // ========================================================================
-/*
+
 TEST_CASE("Testing merge: Left and right lists both empty", "[weight=1]") {
 
   LinkedList<int> left;
@@ -694,4 +694,5 @@ TEST_CASE("Testing merge: Left and right lists non-empty; right list is longer",
     REQUIRE(studentResultList.assertCorrectSize());
   }
 }
+/*
 */

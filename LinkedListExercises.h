@@ -243,6 +243,71 @@ LinkedList<T> LinkedList<T>::merge(const LinkedList<T>& other) const {
   // 4. Remember, DO NOT try to use insertOrdered here. That would be
   //    very slow.
 
+  while( !left.empty() || !right.empty() ){
+    if( !left.empty() && right.empty()) {
+      while( !left.empty() ) {
+        if( merged.empty() ) {
+          merged.pushBack(left.front());
+          left.popFront();
+          continue;
+        }
+
+        const auto last_merged_item = merged.back();
+        const auto item_to_merge = left.front();
+
+        if(last_merged_item < item_to_merge) {
+          merged.pushBack(item_to_merge);
+        }
+        else {
+          merged.popBack();
+          merged.pushBack(item_to_merge);
+          merged.pushBack(last_merged_item);
+        }
+
+        left.popFront();
+      }// inner while
+    }// end if
+    else if( left.empty() && !right.empty() ) {
+      while( !right.empty() ) {
+        if( merged.empty() ) {
+          merged.pushBack(right.front());
+          right.popFront();
+          continue;
+        }
+        const auto last_merged_item = merged.back();
+        const auto item_to_merge = right.front();
+
+        if(last_merged_item < item_to_merge) {
+          merged.pushBack(item_to_merge);
+        }
+        else {
+          merged.popBack();
+          merged.pushBack(item_to_merge);
+          merged.pushBack(last_merged_item);
+        }
+
+        right.popFront();
+      }// inner while
+    }
+    else {
+      std::cout << "both not empty" << std::endl;
+      const auto left_node = left.front();
+      const auto right_node = right.front();
+
+      if (left_node < right_node) {
+        merged.pushBack(left_node);
+        merged.pushBack(right_node);
+      }
+      else {
+        merged.pushBack(right_node);
+        merged.pushBack(left_node);      
+      }
+
+      left.popFront();
+      right.popFront();
+
+    }// end else
+  }// end while
   // -----------------------------------------------------------
 
   // We return the merged list by value here. It may be copied out of the
